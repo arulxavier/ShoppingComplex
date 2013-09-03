@@ -4,26 +4,16 @@ import java.util.Date;
 
 public class User {
 	
-	String id;
-	
-	String firstName;
-	
-	String middleName;
-	
-	String LastName;
-	
-	String userName;
-	
-	String password;
-	
-	String email;
-	
-	String createdBy;
-	
-	Date createdDate;
-	
-	String updatedBy;
-	
+	String id;	
+	String firstName;	
+	String middleName;	
+	String LastName;	
+	String userName;	
+	String password;	
+	String email;	
+	String createdBy;	
+	Date createdDate;	
+	String updatedBy;	
 	Date updatedDate;
 
 	public String getId() {
