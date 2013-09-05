@@ -8,15 +8,18 @@ import java.util.List;
 
 import com.fixent.scm.server.model.Shop;
 import com.fixent.scm.server.model.ShopGroup;
+import com.fixent.scm.server.model.Tenant;
 
-public class ShopDAO 
+public class TenantDAO 
 extends BaseDAO {
+	
+
 	
 	Connection connection = null;
 	PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
 
-	public Boolean createShop(Shop shop) {
+	public Boolean createTenant(Tenant tenant) {
 		
 		int value = 0;
 		Boolean status = false;
@@ -25,12 +28,14 @@ extends BaseDAO {
 			connection = getConnection();
 
 			preparedStatement = connection
-					.prepareStatement("INSERT INTO shop "
-							+ "(ID, NAME, SQRT_FEET, RENT_PER_SQRT_FEET, GROUP_ID) "
-							+ "VALUES (default,?,?,?,?);");
-			preparedStatement.setString(1, shop.getName());
-			preparedStatement.setLong(2, shop.getSqrtFeet());
-			preparedStatement.setLong(3, shop.getRentPerSqrtFeet());
+					.prepareStatement("INSERT INTO TENANT (ID, NAME, MOBILE_NUMBER, BOOKING_DATE, "
+							+ "ADVANCE_AMOUNT, LAST_DUE_DATE, NEXT_DUE_DATE, BALANCE_PAYMENT, "
+							+ "EXTRA_PAYMENT) VALUES (default,?,?,?,?,?,?,?,?);");
+			
+			preparedStatement.setString(1, tenant.getName());
+			preparedStatement.setInt(2, tenant.getMobileNumber());
+			preparedStatement.setDate(3, getSqlDate(tenant.getBookingDate()));
+			preparedStatement.setLong(4, tenant.getAdvanceAmount());
 			preparedStatement.setInt(4, 1);
 				
 			value = preparedStatement.executeUpdate();
@@ -164,4 +169,6 @@ extends BaseDAO {
 	
 		return shops;
 	}
+
+
 }

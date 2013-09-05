@@ -12,7 +12,7 @@ public interface ShopService {
 	
 	Boolean deleteShop(Shop shop);
 	
-	Shop getShop(String shopId);
+	Shop getShop(Long shopId);
 	
 	List<Shop> getShops();
 	

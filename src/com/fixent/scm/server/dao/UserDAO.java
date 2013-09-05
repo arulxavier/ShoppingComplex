@@ -34,12 +34,4 @@ extends BaseDAO {
 		}
 		return status;
 	}
-
-	
-	Date getSqlDate(java.util.Date date) {
-		
-		return new java.sql.Date(date.getTime());
-	} 
-	
-
 }

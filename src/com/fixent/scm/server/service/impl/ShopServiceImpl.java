@@ -32,15 +32,19 @@ implements ShopService{
 	}
 
 	@Override
-	public Shop getShop(String shopId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Shop getShop(Long shopId) {
+		
+		ShopDAO dao = new ShopDAO();
+		Shop shop = dao.getShop(shopId);
+		return shop;
 	}
 
 	@Override
 	public List<Shop> getShops() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ShopDAO dao = new ShopDAO();
+		List<Shop> shops = dao.getShops();
+		return shops;
 	}
 	
 	

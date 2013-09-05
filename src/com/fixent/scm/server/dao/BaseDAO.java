@@ -1,6 +1,7 @@
 package com.fixent.scm.server.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 
 import com.fixent.scm.server.common.DBConnection;
 
@@ -12,5 +13,10 @@ public class BaseDAO {
 				
 		return connection;
 	}
+	
+	Date getSqlDate(java.util.Date date) {
+		
+		return new java.sql.Date(date.getTime());
+	} 
 
 }
