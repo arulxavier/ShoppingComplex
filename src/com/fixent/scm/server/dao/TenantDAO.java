@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fixent.scm.server.model.Shop;
-import com.fixent.scm.server.model.ShopGroup;
 import com.fixent.scm.server.model.Tenant;
 
 public class TenantDAO 
@@ -32,11 +30,14 @@ extends BaseDAO {
 							+ "ADVANCE_AMOUNT, LAST_DUE_DATE, NEXT_DUE_DATE, BALANCE_PAYMENT, "
 							+ "EXTRA_PAYMENT) VALUES (default,?,?,?,?,?,?,?,?);");
 			
-			preparedStatement.setString(1, tenant.getName());
+			preparedStatement.setString(1, tenant.getContactPersonName());
 			preparedStatement.setInt(2, tenant.getMobileNumber());
 			preparedStatement.setDate(3, getSqlDate(tenant.getBookingDate()));
 			preparedStatement.setLong(4, tenant.getAdvanceAmount());
-			preparedStatement.setInt(4, 1);
+			preparedStatement.setDate(5, getSqlDate(tenant.getLastDueDate()));
+			preparedStatement.setDate(6, getSqlDate(tenant.getNextDueDate()));
+			preparedStatement.setLong(7, tenant.getBalancePayment());
+			preparedStatement.setLong(8, tenant.getExtraPayment());
 				
 			value = preparedStatement.executeUpdate();
 			
@@ -48,13 +49,20 @@ extends BaseDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			
+			try {
+				connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 		
 		return status;
 	}
 	
 
-	public Boolean modifyShop(Shop shop) {
+	public Boolean modifyShop(Tenant tenant) {
 		
 		int value = 0;
 		Boolean status = false;
@@ -65,17 +73,26 @@ extends BaseDAO {
 			connection = getConnection();
 
 			preparedStatement = connection
-					.prepareStatement("UPDATE shop "
+					.prepareStatement("UPDATE tenant "
 							+ "SET NAME = ?, "
-							+ "SQRT_FEET = ?, "
-							+ "RENT_PER_SQRT_FEET = ?, "
-							+ "GROUP_ID = ? "
-							+ "WHERE ID = ?");
-			preparedStatement.setString(1, shop.getName());
-			preparedStatement.setLong(2, shop.getSqrtFeet());
-			preparedStatement.setLong(3, shop.getRentPerSqrtFeet());
-			preparedStatement.setInt(4, shop.getGroup().getId());
-			preparedStatement.setInt(5, shop.getId());
+							+ "MOBILE_NUMBER = ?, "
+							+ "BOOKING_DATE = ?, "
+							+ "ADVANCE_AMOUNT = ?, "
+							+ "LAST_DUE_DATE = ?, "
+							+ "NEXT_DUE_DATE = ?, "
+							+ "BALANCE_PAYMENT = ?, "
+							+ "EXTRA_PAYMENT = ? "
+							+ "WHERE ID = ?;");
+			preparedStatement.setString(1, tenant.getContactPersonName());
+			preparedStatement.setInt(2, tenant.getMobileNumber());
+			preparedStatement.setDate(3, getSqlDate(tenant.getBookingDate()));
+			preparedStatement.setLong(4, tenant.getAdvanceAmount());
+			preparedStatement.setDate(5, getSqlDate(tenant.getLastDueDate()));
+			preparedStatement.setDate(6, getSqlDate(tenant.getNextDueDate()));
+			preparedStatement.setLong(7, tenant.getBalancePayment());
+			preparedStatement.setLong(8, tenant.getExtraPayment());
+			preparedStatement.setInt(9, tenant.getId());
+				
 				
 			value = preparedStatement.executeUpdate();
 			
@@ -87,87 +104,97 @@ extends BaseDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			
+			try {
+				connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 		
 		return status;
 	}
 	
-	Boolean deleteShop(Shop shop) {
+	public Boolean deleteShop(Tenant tenant) {
 		
 		return false;
 		
 	}
 	
-	public Shop getShop(Long shopId) {
+	public Tenant getTenant(Long tenantId) {
 		
-		Shop shop = new Shop();
+		Tenant tenant = new Tenant();
 		try {
 			
 			connection = getConnection();
-			preparedStatement = connection.prepareStatement("SELECT * FROM shopping_complex.shop where id = ?");
-			preparedStatement.setLong(1, shopId);
+			preparedStatement = connection.prepareStatement("SELECT * FROM tenant where id = ?;");
+			preparedStatement.setLong(1, tenantId);
 			resultSet = preparedStatement.executeQuery();
 			
 			while (resultSet.next()) {
 				
-				shop.setId(resultSet.getInt(1));
-				shop.setName(resultSet.getString(2));
-				shop.setSqrtFeet(resultSet.getLong(3));
-				shop.setRentPerSqrtFeet(resultSet.getLong(4));
-				PreparedStatement preparedStatement = connection
-						.prepareStatement("SELECT * FROM shopping_complex.shop_group where id = ?");
-				preparedStatement.setLong(1, resultSet.getLong(5));
-				ResultSet resultSet = preparedStatement.executeQuery();
-				while (resultSet.next()) {
-					ShopGroup group = new ShopGroup();
-					group.setId(resultSet.getInt(1));
-					group.setName(resultSet.getString(2));
-					shop.setGroup(group);
-				}
+				tenant.setId(resultSet.getInt(1));
+				tenant.setContactPersonName(resultSet.getString(2));
+				tenant.setMobileNumber(resultSet.getInt(3));
+				tenant.setBookingDate(resultSet.getDate(4));
+				tenant.setAdvanceAmount(resultSet.getLong(5));
+				tenant.setLastDueDate(resultSet.getDate(6));
+				tenant.setNextDueDate(resultSet.getDate(7));
+				tenant.setBalancePayment(resultSet.getLong(8));
+				tenant.setExtraPayment(resultSet.getLong(9));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			
+			try {
+				connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 	
-		return shop;
+		return tenant;
 	}
 	
-	public List<Shop> getShops() {
+	public List<Tenant> getTenants() {
 		
 
-		List<Shop> shops = new ArrayList<Shop>();
+		List<Tenant> tenants = new ArrayList<Tenant>();
 		
 		try {
 			
 			connection = getConnection();
-			preparedStatement = connection.prepareStatement("SELECT * FROM shopping_complex.shop");
+			preparedStatement = connection.prepareStatement("SELECT * FROM tenant;");
 			resultSet = preparedStatement.executeQuery();
 			
 			while (resultSet.next()) {
 				
-				Shop shop = new Shop();
-				shop.setId(resultSet.getInt(1));
-				shop.setName(resultSet.getString(2));
-				shop.setSqrtFeet(resultSet.getLong(3));
-				shop.setRentPerSqrtFeet(resultSet.getLong(4));
-				PreparedStatement preparedStatement = connection
-						.prepareStatement("SELECT * FROM shopping_complex.shop_group where id = ?");
-				preparedStatement.setLong(1, resultSet.getLong(5));
-				ResultSet resultSet = preparedStatement.executeQuery();
-				while (resultSet.next()) {
-					ShopGroup group = new ShopGroup();
-					group.setId(resultSet.getInt(1));
-					group.setName(resultSet.getString(2));
-					shop.setGroup(group);
-				}
-				
-				shops.add(shop);
+				Tenant tenant = new Tenant();
+				tenant.setId(resultSet.getInt(1));
+				tenant.setContactPersonName(resultSet.getString(2));
+				tenant.setMobileNumber(resultSet.getInt(3));
+				tenant.setBookingDate(resultSet.getDate(4));
+				tenant.setAdvanceAmount(resultSet.getLong(5));
+				tenant.setLastDueDate(resultSet.getDate(6));
+				tenant.setNextDueDate(resultSet.getDate(7));
+				tenant.setBalancePayment(resultSet.getLong(8));
+				tenant.setExtraPayment(resultSet.getLong(9));
+				tenants.add(tenant);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			
+			try {
+				connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 	
-		return shops;
+		return tenants;
 	}
 
 

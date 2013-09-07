@@ -21,18 +21,21 @@ implements ShopService{
 
 	@Override
 	public Boolean modifyShop(Shop shop) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ShopDAO dao = new ShopDAO();
+		return dao.modifyShop(shop);
 	}
 
 	@Override
 	public Boolean deleteShop(Shop shop) {
-		// TODO Auto-generated method stub
+		
+		ShopDAO dao = new ShopDAO();
+		dao.deleteShop(shop);
 		return null;
 	}
 
 	@Override
-	public Shop getShop(Long shopId) {
+	public Shop getShop(int shopId) {
 		
 		ShopDAO dao = new ShopDAO();
 		Shop shop = dao.getShop(shopId);

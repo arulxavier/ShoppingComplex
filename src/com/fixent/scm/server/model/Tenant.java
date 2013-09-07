@@ -8,7 +8,7 @@ import java.util.Date;
 //
 //  @ Project : Untitled
 //  @ File Name : Tenant.java
-//  @ Date : 9/2/2013
+//  @ Date : 9/7/2013
 //  @ Author : 
 //
 //
@@ -17,10 +17,11 @@ import java.util.Date;
 
 
 public class Tenant {
-	
 	private int id;
-	private String name;
+	public String shopName;
+	private String contactPersonName;
 	private int mobileNumber;
+	private int landLineNumber;
 	private Date bookingDate;
 	private long advanceAmount;
 	private Date lastDueDate;
@@ -35,17 +36,29 @@ public class Tenant {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getShopName() {
+		return shopName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+	public String getContactPersonName() {
+		return contactPersonName;
+	}
+	public void setContactPersonName(String contactPersonName) {
+		this.contactPersonName = contactPersonName;
 	}
 	public int getMobileNumber() {
 		return mobileNumber;
 	}
 	public void setMobileNumber(int mobileNumber) {
 		this.mobileNumber = mobileNumber;
+	}
+	public int getLandLineNumber() {
+		return landLineNumber;
+	}
+	public void setLandLineNumber(int landLineNumber) {
+		this.landLineNumber = landLineNumber;
 	}
 	public Date getBookingDate() {
 		return bookingDate;
@@ -95,8 +108,6 @@ public class Tenant {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
-	
 	
 	
 }

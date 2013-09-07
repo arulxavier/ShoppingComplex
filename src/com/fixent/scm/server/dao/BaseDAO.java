@@ -18,5 +18,10 @@ public class BaseDAO {
 		
 		return new java.sql.Date(date.getTime());
 	} 
+	
+	java.util.Date getUtilDate(java.sql.Date date) {
+		
+		return new java.util.Date(date.getTime());
+	}
 
 }

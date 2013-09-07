@@ -11,19 +11,23 @@ public class TestShopServiceImpl {
 		
 		
 		Shop shop = new Shop();
-		shop.setName("Shop Namw");
-		shop.setSqrtFeet(400);
-		shop.setRentPerSqrtFeet(100);
+		shop.setSqrtFeet(400.00);
+		shop.setRentPerSqrtFeet(100.00);
 		ShopGroup group = new ShopGroup();
-		group.setId(1);
-		group.setName("sdsad");
+		group.setId(2);
 		shop.setGroup(group);
+		
 		ShopServiceImpl impl = new ShopServiceImpl();
 		impl.createShop(shop);
 		
-		shop = impl.getShop(2l);
+		shop = impl.getShop(12);
 		
 		List<Shop> list = impl.getShops();
+		
+		shop.setSqrtFeet(500.00);
+		impl.modifyShop(shop);
+		
+		impl.deleteShop(shop);
 		
 		System.out.println();
 	}

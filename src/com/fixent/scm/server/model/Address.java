@@ -5,7 +5,7 @@ package com.fixent.scm.server.model;
 //
 //  @ Project : Untitled
 //  @ File Name : Address.java
-//  @ Date : 9/2/2013
+//  @ Date : 9/7/2013
 //  @ Author : 
 //
 //
@@ -14,7 +14,6 @@ package com.fixent.scm.server.model;
 
 
 public class Address {
-	
 	private String street;
 	private String city;
 	private String state;

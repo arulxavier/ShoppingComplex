@@ -5,7 +5,7 @@ package com.fixent.scm.server.model;
 //
 //  @ Project : Untitled
 //  @ File Name : Shop.java
-//  @ Date : 9/2/2013
+//  @ Date : 9/7/2013
 //  @ Author : 
 //
 //
@@ -14,11 +14,10 @@ package com.fixent.scm.server.model;
 
 
 public class Shop {
-	
 	private int id;
-	private String name;
-	private long sqrtFeet;
-	private long rentPerSqrtFeet;
+	private int number;
+	private Double sqrtFeet;
+	private Double rentPerSqrtFeet;
 	private ShopGroup group;
 	public int getId() {
 		return id;
@@ -26,22 +25,22 @@ public class Shop {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public int getNumber() {
+		return number;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setNumber(int number) {
+		this.number = number;
 	}
-	public long getSqrtFeet() {
+	public Double getSqrtFeet() {
 		return sqrtFeet;
 	}
-	public void setSqrtFeet(long sqrtFeet) {
+	public void setSqrtFeet(Double sqrtFeet) {
 		this.sqrtFeet = sqrtFeet;
 	}
-	public long getRentPerSqrtFeet() {
+	public Double getRentPerSqrtFeet() {
 		return rentPerSqrtFeet;
 	}
-	public void setRentPerSqrtFeet(long rentPerSqrtFeet) {
+	public void setRentPerSqrtFeet(Double rentPerSqrtFeet) {
 		this.rentPerSqrtFeet = rentPerSqrtFeet;
 	}
 	public ShopGroup getGroup() {

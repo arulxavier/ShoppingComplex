@@ -5,7 +5,7 @@ package com.fixent.scm.server.model;
 //
 //  @ Project : Untitled
 //  @ File Name : ShopGroup.java
-//  @ Date : 9/2/2013
+//  @ Date : 9/7/2013
 //  @ Author : 
 //
 //
@@ -14,10 +14,8 @@ package com.fixent.scm.server.model;
 
 
 public class ShopGroup {
-	
 	private int id;
 	private String name;
-	
 	public int getId() {
 		return id;
 	}

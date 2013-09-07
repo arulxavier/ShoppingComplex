@@ -26,12 +26,11 @@ extends BaseDAO {
 
 			preparedStatement = connection
 					.prepareStatement("INSERT INTO shop "
-							+ "(ID, NAME, SQRT_FEET, RENT_PER_SQRT_FEET, GROUP_ID) "
+							+ "(ID, SQRT_FEET, RENT_PER_SQRT_FEET, GROUP_ID) "
 							+ "VALUES (default,?,?,?,?);");
-			preparedStatement.setString(1, shop.getName());
-			preparedStatement.setLong(2, shop.getSqrtFeet());
-			preparedStatement.setLong(3, shop.getRentPerSqrtFeet());
-			preparedStatement.setInt(4, 1);
+			preparedStatement.setDouble(1, shop.getSqrtFeet());
+			preparedStatement.setDouble(2, shop.getRentPerSqrtFeet());
+			preparedStatement.setInt(3, shop.getGroup().getId());
 				
 			value = preparedStatement.executeUpdate();
 			
@@ -43,6 +42,13 @@ extends BaseDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			
+			try {
+				connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 		
 		return status;
@@ -61,16 +67,14 @@ extends BaseDAO {
 
 			preparedStatement = connection
 					.prepareStatement("UPDATE shop "
-							+ "SET NAME = ?, "
-							+ "SQRT_FEET = ?, "
+							+ "SET SQRT_FEET = ?, "
 							+ "RENT_PER_SQRT_FEET = ?, "
 							+ "GROUP_ID = ? "
 							+ "WHERE ID = ?");
-			preparedStatement.setString(1, shop.getName());
-			preparedStatement.setLong(2, shop.getSqrtFeet());
-			preparedStatement.setLong(3, shop.getRentPerSqrtFeet());
-			preparedStatement.setInt(4, shop.getGroup().getId());
-			preparedStatement.setInt(5, shop.getId());
+			preparedStatement.setDouble(1, shop.getSqrtFeet());
+			preparedStatement.setDouble(2, shop.getRentPerSqrtFeet());
+			preparedStatement.setInt(3, shop.getGroup().getId());
+			preparedStatement.setInt(4, shop.getId());
 				
 			value = preparedStatement.executeUpdate();
 			
@@ -82,18 +86,26 @@ extends BaseDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			
+			try {
+				connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 		
 		return status;
 	}
 	
-	Boolean deleteShop(Shop shop) {
+	public Boolean deleteShop(Shop shop) {
+		
 		
 		return false;
 		
 	}
 	
-	public Shop getShop(Long shopId) {
+	public Shop getShop(int shopId) {
 		
 		Shop shop = new Shop();
 		try {
@@ -106,9 +118,8 @@ extends BaseDAO {
 			while (resultSet.next()) {
 				
 				shop.setId(resultSet.getInt(1));
-				shop.setName(resultSet.getString(2));
-				shop.setSqrtFeet(resultSet.getLong(3));
-				shop.setRentPerSqrtFeet(resultSet.getLong(4));
+				shop.setSqrtFeet(resultSet.getDouble(2));
+				shop.setRentPerSqrtFeet(resultSet.getDouble(3));
 				PreparedStatement preparedStatement = connection
 						.prepareStatement("SELECT * FROM shopping_complex.shop_group where id = ?");
 				preparedStatement.setLong(1, resultSet.getLong(5));
@@ -142,9 +153,8 @@ extends BaseDAO {
 				
 				Shop shop = new Shop();
 				shop.setId(resultSet.getInt(1));
-				shop.setName(resultSet.getString(2));
-				shop.setSqrtFeet(resultSet.getLong(3));
-				shop.setRentPerSqrtFeet(resultSet.getLong(4));
+				shop.setSqrtFeet(resultSet.getDouble(2));
+				shop.setRentPerSqrtFeet(resultSet.getDouble(3));
 				PreparedStatement preparedStatement = connection
 						.prepareStatement("SELECT * FROM shopping_complex.shop_group where id = ?");
 				preparedStatement.setLong(1, resultSet.getLong(5));

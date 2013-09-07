@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fixent.scm.client.login.view;
+package com.fixent.scm.client.rent.view;
 
 /**
  *
