@@ -49,6 +49,14 @@ implements ShopService{
 		List<Shop> shops = dao.getShops();
 		return shops;
 	}
+
+	public boolean updateShopNumber(Shop shop) {
+		
+		ShopDAO dao = new ShopDAO();
+		Boolean status = dao.updateShopNumber(shop);
+		return status;
+		
+	}
 	
 	
 

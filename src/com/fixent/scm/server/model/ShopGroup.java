@@ -5,7 +5,7 @@ package com.fixent.scm.server.model;
 //
 //  @ Project : Untitled
 //  @ File Name : ShopGroup.java
-//  @ Date : 9/7/2013
+//  @ Date : 9/8/2013
 //  @ Author : 
 //
 //
@@ -28,6 +28,5 @@ public class ShopGroup {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	
 }

@@ -26,18 +26,29 @@ extends BaseDAO {
 			connection = getConnection();
 
 			preparedStatement = connection
-					.prepareStatement("INSERT INTO TENANT (ID, NAME, MOBILE_NUMBER, BOOKING_DATE, "
-							+ "ADVANCE_AMOUNT, LAST_DUE_DATE, NEXT_DUE_DATE, BALANCE_PAYMENT, "
-							+ "EXTRA_PAYMENT) VALUES (default,?,?,?,?,?,?,?,?);");
-			
-			preparedStatement.setString(1, tenant.getContactPersonName());
-			preparedStatement.setInt(2, tenant.getMobileNumber());
-			preparedStatement.setDate(3, getSqlDate(tenant.getBookingDate()));
-			preparedStatement.setLong(4, tenant.getAdvanceAmount());
-			preparedStatement.setDate(5, getSqlDate(tenant.getLastDueDate()));
-			preparedStatement.setDate(6, getSqlDate(tenant.getNextDueDate()));
-			preparedStatement.setLong(7, tenant.getBalancePayment());
-			preparedStatement.setLong(8, tenant.getExtraPayment());
+					.prepareStatement("INSERT INTO tenant ("
+							+ "ID, "
+							+ "SHOP_NAME, "
+							+ "CONTACT_PERSON_NAME, "
+							+ "MOBILE_NUMBER, "
+							+ "LAND_LINE_NUMBER, "
+							+ "STREET, "
+							+ "CITY, "
+							+ "STATE, "
+							+ "COUNTRY, "
+							+ "PINCODE, "
+							+ "SHOP_ID) "
+							+ "VALUES (deffault,?,?,?,?,?,?,?,?,?,?);");
+			preparedStatement.setString(1, tenant.getShopName());
+			preparedStatement.setString(2, tenant.getContactPersonName());
+			preparedStatement.setLong(3, tenant.getMobileNumber());
+			preparedStatement.setLong(4, tenant.getLandLineNumber());
+			preparedStatement.setString(5, tenant.getAddress().getStreet());
+			preparedStatement.setString(6, tenant.getAddress().getCity());
+			preparedStatement.setString(7, tenant.getAddress().getState());
+			preparedStatement.setString(8, tenant.getAddress().getCountry());
+			preparedStatement.setInt(9, tenant.getAddress().getPincode());
+			preparedStatement.setInt(10, tenant.getShop().getId());
 				
 			value = preparedStatement.executeUpdate();
 			
@@ -84,13 +95,7 @@ extends BaseDAO {
 							+ "EXTRA_PAYMENT = ? "
 							+ "WHERE ID = ?;");
 			preparedStatement.setString(1, tenant.getContactPersonName());
-			preparedStatement.setInt(2, tenant.getMobileNumber());
-			preparedStatement.setDate(3, getSqlDate(tenant.getBookingDate()));
-			preparedStatement.setLong(4, tenant.getAdvanceAmount());
-			preparedStatement.setDate(5, getSqlDate(tenant.getLastDueDate()));
-			preparedStatement.setDate(6, getSqlDate(tenant.getNextDueDate()));
-			preparedStatement.setLong(7, tenant.getBalancePayment());
-			preparedStatement.setLong(8, tenant.getExtraPayment());
+//			preparedStatement.setInt(2, tenant.getMobileNumber());
 			preparedStatement.setInt(9, tenant.getId());
 				
 				
@@ -137,12 +142,6 @@ extends BaseDAO {
 				tenant.setId(resultSet.getInt(1));
 				tenant.setContactPersonName(resultSet.getString(2));
 				tenant.setMobileNumber(resultSet.getInt(3));
-				tenant.setBookingDate(resultSet.getDate(4));
-				tenant.setAdvanceAmount(resultSet.getLong(5));
-				tenant.setLastDueDate(resultSet.getDate(6));
-				tenant.setNextDueDate(resultSet.getDate(7));
-				tenant.setBalancePayment(resultSet.getLong(8));
-				tenant.setExtraPayment(resultSet.getLong(9));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -175,12 +174,6 @@ extends BaseDAO {
 				tenant.setId(resultSet.getInt(1));
 				tenant.setContactPersonName(resultSet.getString(2));
 				tenant.setMobileNumber(resultSet.getInt(3));
-				tenant.setBookingDate(resultSet.getDate(4));
-				tenant.setAdvanceAmount(resultSet.getLong(5));
-				tenant.setLastDueDate(resultSet.getDate(6));
-				tenant.setNextDueDate(resultSet.getDate(7));
-				tenant.setBalancePayment(resultSet.getLong(8));
-				tenant.setExtraPayment(resultSet.getLong(9));
 				tenants.add(tenant);
 			}
 		} catch (Exception e) {

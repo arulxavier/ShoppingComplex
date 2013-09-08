@@ -5,7 +5,7 @@ package com.fixent.scm.server.model;
 //
 //  @ Project : Untitled
 //  @ File Name : Address.java
-//  @ Date : 9/7/2013
+//  @ Date : 9/8/2013
 //  @ Author : 
 //
 //
@@ -18,7 +18,7 @@ public class Address {
 	private String city;
 	private String state;
 	public String country;
-	public String pincode;
+	public int pincode;
 	public String getStreet() {
 		return street;
 	}
@@ -43,10 +43,10 @@ public class Address {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public String getPincode() {
+	public int getPincode() {
 		return pincode;
 	}
-	public void setPincode(String pincode) {
+	public void setPincode(int pincode) {
 		this.pincode = pincode;
 	}
 	

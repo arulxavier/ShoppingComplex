@@ -7,7 +7,7 @@ import java.util.Date;
 //
 //  @ Project : Untitled
 //  @ File Name : Schedule.java
-//  @ Date : 9/7/2013
+//  @ Date : 9/8/2013
 //  @ Author : 
 //
 //
@@ -17,12 +17,11 @@ import java.util.Date;
 
 public class Schedule {
 	private int id;
-	private Double nextDueDate;
-	private Double nextDueAmount;
+	private Date lastDueDate;
+	private Date dueDate;
+	public Object dueAmount;
 	private Double paymentDate;
 	private Double paymentAmount;
-	private Date lastDueDate;
-	private Double lastDueAmount;
 	public Rent rent;
 	public int getId() {
 		return id;
@@ -30,17 +29,23 @@ public class Schedule {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Double getNextDueDate() {
-		return nextDueDate;
+	public Date getLastDueDate() {
+		return lastDueDate;
 	}
-	public void setNextDueDate(Double nextDueDate) {
-		this.nextDueDate = nextDueDate;
+	public void setLastDueDate(Date lastDueDate) {
+		this.lastDueDate = lastDueDate;
 	}
-	public Double getNextDueAmount() {
-		return nextDueAmount;
+	public Date getDueDate() {
+		return dueDate;
 	}
-	public void setNextDueAmount(Double nextDueAmount) {
-		this.nextDueAmount = nextDueAmount;
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
+	}
+	public Object getDueAmount() {
+		return dueAmount;
+	}
+	public void setDueAmount(Object dueAmount) {
+		this.dueAmount = dueAmount;
 	}
 	public Double getPaymentDate() {
 		return paymentDate;
@@ -54,24 +59,11 @@ public class Schedule {
 	public void setPaymentAmount(Double paymentAmount) {
 		this.paymentAmount = paymentAmount;
 	}
-	public Date getLastDueDate() {
-		return lastDueDate;
-	}
-	public void setLastDueDate(Date lastDueDate) {
-		this.lastDueDate = lastDueDate;
-	}
-	public Double getLastDueAmount() {
-		return lastDueAmount;
-	}
-	public void setLastDueAmount(Double lastDueAmount) {
-		this.lastDueAmount = lastDueAmount;
-	}
 	public Rent getRent() {
 		return rent;
 	}
 	public void setRent(Rent rent) {
 		this.rent = rent;
 	}
-	
 	
 }

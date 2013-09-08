@@ -26,11 +26,12 @@ extends BaseDAO {
 
 			preparedStatement = connection
 					.prepareStatement("INSERT INTO shop "
-							+ "(ID, SQRT_FEET, RENT_PER_SQRT_FEET, GROUP_ID) "
+							+ "(ID, NUMBER, SQRT_FEET, RENT_PER_SQRT_FEET, GROUP_ID) "
 							+ "VALUES (default,?,?,?,?);");
-			preparedStatement.setDouble(1, shop.getSqrtFeet());
-			preparedStatement.setDouble(2, shop.getRentPerSqrtFeet());
-			preparedStatement.setInt(3, shop.getGroup().getId());
+			preparedStatement.setInt(1, shop.getNumber());
+			preparedStatement.setDouble(2, shop.getSqrtFeet());
+			preparedStatement.setDouble(3, shop.getRentPerSqrtFeet());
+			preparedStatement.setInt(4, shop.getGroup().getId());
 				
 			value = preparedStatement.executeUpdate();
 			
@@ -173,5 +174,43 @@ extends BaseDAO {
 		}
 	
 		return shops;
+	}
+
+
+	public Boolean updateShopNumber(Shop shop) {
+		
+		int value = 0;
+		Boolean status = false;
+		
+		try {
+			
+			
+			connection = getConnection();
+
+			preparedStatement = connection
+					.prepareStatement("UPDATE shop SET NUMBER = ? WHERE ID = ?;");
+			preparedStatement.setInt(1, shop.getNumber());
+			preparedStatement.setInt(2, shop.getId());
+				
+			value = preparedStatement.executeUpdate();
+			
+			if (value == 1) {
+				status = true;
+			} else {
+				status = false;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return status;
 	}
 }
