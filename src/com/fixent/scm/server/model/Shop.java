@@ -14,17 +14,11 @@ package com.fixent.scm.server.model;
 
 
 public class Shop {
-	private int id;
 	private int number;
 	private Double sqrtFeet;
 	private Double rentPerSqrtFeet;
 	private ShopGroup group;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public int getNumber() {
 		return number;
 	}

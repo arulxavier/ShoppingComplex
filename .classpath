@@ -5,5 +5,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Accordion"/>
 	<classpathentry kind="var" path="3RDPARTY_JAR/mysql-connector-java-5.1.25-bin.jar"/>
+	<classpathentry kind="var" path="3RDPARTY_JAR"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

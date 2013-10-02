@@ -7,21 +7,20 @@ public class Menu {
 	
 	Map<String, String> rootMenu = new HashMap<String, String>();
 	Map<String, Map<String, String>> subMenuMap = new HashMap<String, Map<String,String>>();
-	Map<String, String> masterSubMenu = new HashMap<String, String>();
+	Map<String, String> shopinfo = new HashMap<String, String>();
 	Map<String, String> rentSubMenu = new HashMap<String, String>();
 	
 	public Menu() {
 		
-		rootMenu.put("1", "Master");
-		rootMenu.put("2", "Rent");
+		rootMenu.put("1", "Shop Info");
+		rootMenu.put("2", "Report");
 
-		masterSubMenu.put("1", "Shop Detail");
-		masterSubMenu.put("2", "Tenant Detail");
+		shopinfo.put("1", "Shop Details");
+		shopinfo.put("2", "Tenant Details");
+		shopinfo.put("3", "Booking Details");
 
-		rentSubMenu.put("1", "Rent Detail");
 		
-		subMenuMap.put("Master", masterSubMenu);
-		subMenuMap.put("Rent", rentSubMenu);
+		subMenuMap.put("Shop Info", shopinfo);
 		
 	}
 

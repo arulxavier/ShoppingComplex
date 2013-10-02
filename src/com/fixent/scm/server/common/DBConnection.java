@@ -26,7 +26,7 @@ public class DBConnection {
 			
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/SHOPPING_COMPLEX?user=scmuser&password=scmpw");
+					.getConnection("jdbc:mysql://localhost:3306/SHOPPING_COMPLEX?user=root&password=root@123");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

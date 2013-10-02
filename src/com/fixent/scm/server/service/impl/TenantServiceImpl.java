@@ -15,17 +15,8 @@ implements TenantService {
 	public Boolean createTenant(Tenant tenant) {
 		
 		TenantDAO dao = new TenantDAO();
-		dao.createTenant(tenant);
-		
-		try {
-			
-			ShopServiceImpl impl = new ShopServiceImpl();
-			impl.updateShopNumber(tenant.getShop());
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-		return  null;
+		boolean status = dao.createTenant(tenant);		
+		return  status;
 	}
 
 	@Override

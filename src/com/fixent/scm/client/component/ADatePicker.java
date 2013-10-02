@@ -79,7 +79,7 @@ public class ADatePicker extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\dev\\ssm\\doc\\DateChooser_O.gif")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fixent/scm/client/component/iconDatePicker.gif"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -117,7 +117,6 @@ public class ADatePicker extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-  
     // End of variables declaration//GEN-END:variables
 	public String getjTextField1() {
 		return jTextField1.getText();
@@ -132,7 +131,12 @@ public class ADatePicker extends javax.swing.JPanel {
 }
 
 class JTextField1 extends JTextField implements Observer {
-    public void update(Observable o, Object arg) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public void update(Observable o, Object arg) {
         Calendar calendar = (Calendar) arg;
         DatePicker dp = (DatePicker) o;
         System.out.println("picked=" + dp.formatDate(calendar));
@@ -147,7 +151,11 @@ class DatePicker extends Observable implements Runnable, WindowFocusListener {
 
     public static class DayLabel extends JLabel implements MouseInputListener,
             MouseMotionListener {
-        private DatePicker parent;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private DatePicker parent;
 
         
         public DayLabel(DatePicker parent, int day) {
@@ -211,7 +219,11 @@ class DatePicker extends Observable implements Runnable, WindowFocusListener {
     }
 
     public static class MonthPanel extends JPanel {
-        private DatePicker parent;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private DatePicker parent;
 
         public MonthPanel(DatePicker parent, Calendar c) {
             this.parent = parent;
@@ -277,7 +289,12 @@ class DatePicker extends Observable implements Runnable, WindowFocusListener {
     }
 
      static class NavigatePanel extends JPanel implements ActionListener {
-        private DatePicker parent;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		private DatePicker parent;
 
         private JButton premon;
 
@@ -289,7 +306,8 @@ class DatePicker extends Observable implements Runnable, WindowFocusListener {
 
         private JLabel lbl;
 
-        private byte[] getImage(String fileName) {
+        @SuppressWarnings("unused")
+		private byte[] getImage(String fileName) {
             InputStream is = null;
 
             try {

@@ -17,7 +17,6 @@ public class Address {
 	private String street;
 	private String city;
 	private String state;
-	public String country;
 	public int pincode;
 	public String getStreet() {
 		return street;
@@ -36,12 +35,6 @@ public class Address {
 	}
 	public void setState(String state) {
 		this.state = state;
-	}
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
 	}
 	public int getPincode() {
 		return pincode;

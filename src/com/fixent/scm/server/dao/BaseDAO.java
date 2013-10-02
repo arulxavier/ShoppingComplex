@@ -2,10 +2,16 @@ package com.fixent.scm.server.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import com.fixent.scm.server.common.DBConnection;
 
 public class BaseDAO {
+	
+	Connection connection = null;
+	PreparedStatement preparedStatement = null;
+	ResultSet resultSet = null;
 	
 	Connection getConnection() {
 		

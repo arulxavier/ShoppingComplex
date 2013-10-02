@@ -3,6 +3,7 @@ package com.fixent.scm.server.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 import com.fixent.scm.server.model.User;
 
@@ -10,7 +11,7 @@ public class UserDAO
 extends BaseDAO {
 
 	private Connection connection = null;
-//	private Statement statement = null;
+	private Statement statement = null;
 	private PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
 

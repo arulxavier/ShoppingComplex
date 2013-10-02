@@ -12,8 +12,8 @@ import com.fixent.scm.server.model.ShopGroup;
 public class ShopDAO 
 extends BaseDAO {
 	
-	Connection connection = null;
-	PreparedStatement preparedStatement = null;
+	private Connection connection = null;
+	private PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
 
 	public Boolean createShop(Shop shop) {
@@ -26,7 +26,7 @@ extends BaseDAO {
 
 			preparedStatement = connection
 					.prepareStatement("INSERT INTO shop "
-							+ "(ID, NUMBER, SQRT_FEET, RENT_PER_SQRT_FEET, GROUP_ID) "
+							+ "(NUMBER, SQRT_FEET, RENT_PER_SQRT_FEET, GROUP_ID) "
 							+ "VALUES (default,?,?,?,?);");
 			preparedStatement.setInt(1, shop.getNumber());
 			preparedStatement.setDouble(2, shop.getSqrtFeet());
@@ -34,7 +34,7 @@ extends BaseDAO {
 			preparedStatement.setInt(4, shop.getGroup().getId());
 				
 			value = preparedStatement.executeUpdate();
-			
+			 
 			if (value == 1) {
 				status = true;
 			} else {
@@ -75,7 +75,7 @@ extends BaseDAO {
 			preparedStatement.setDouble(1, shop.getSqrtFeet());
 			preparedStatement.setDouble(2, shop.getRentPerSqrtFeet());
 			preparedStatement.setInt(3, shop.getGroup().getId());
-			preparedStatement.setInt(4, shop.getId());
+			preparedStatement.setInt(4, shop.getNumber());
 				
 			value = preparedStatement.executeUpdate();
 			
@@ -106,23 +106,23 @@ extends BaseDAO {
 		
 	}
 	
-	public Shop getShop(int shopId) {
+	public Shop getShop(int shopNo) {
 		
 		Shop shop = new Shop();
 		try {
 			
 			connection = getConnection();
-			preparedStatement = connection.prepareStatement("SELECT * FROM shopping_complex.shop where id = ?");
-			preparedStatement.setLong(1, shopId);
+			preparedStatement = connection.prepareStatement("SELECT * FROM shopping_complex.shop where SHOP_NO = ?");
+			preparedStatement.setLong(1, shopNo);
 			resultSet = preparedStatement.executeQuery();
 			
 			while (resultSet.next()) {
 				
-				shop.setId(resultSet.getInt(1));
+				shop.setNumber(resultSet.getInt(1));
 				shop.setSqrtFeet(resultSet.getDouble(2));
 				shop.setRentPerSqrtFeet(resultSet.getDouble(3));
 				PreparedStatement preparedStatement = connection
-						.prepareStatement("SELECT * FROM shopping_complex.shop_group where id = ?");
+						.prepareStatement("SELECT * FROM shopping_complex.shop_group where ID = ?");
 				preparedStatement.setLong(1, resultSet.getLong(5));
 				ResultSet resultSet = preparedStatement.executeQuery();
 				while (resultSet.next()) {
@@ -153,12 +153,12 @@ extends BaseDAO {
 			while (resultSet.next()) {
 				
 				Shop shop = new Shop();
-				shop.setId(resultSet.getInt(1));
+				shop.setNumber(resultSet.getInt(1));
 				shop.setSqrtFeet(resultSet.getDouble(2));
 				shop.setRentPerSqrtFeet(resultSet.getDouble(3));
 				PreparedStatement preparedStatement = connection
 						.prepareStatement("SELECT * FROM shopping_complex.shop_group where id = ?");
-				preparedStatement.setLong(1, resultSet.getLong(5));
+				preparedStatement.setLong(1, resultSet.getLong(4));
 				ResultSet resultSet = preparedStatement.executeQuery();
 				while (resultSet.next()) {
 					ShopGroup group = new ShopGroup();
@@ -177,40 +177,17 @@ extends BaseDAO {
 	}
 
 
-	public Boolean updateShopNumber(Shop shop) {
+	public List<String> getShopNumbers() 
+	throws Exception {
 		
-		int value = 0;
-		Boolean status = false;
-		
-		try {
-			
-			
-			connection = getConnection();
-
-			preparedStatement = connection
-					.prepareStatement("UPDATE shop SET NUMBER = ? WHERE ID = ?;");
-			preparedStatement.setInt(1, shop.getNumber());
-			preparedStatement.setInt(2, shop.getId());
-				
-			value = preparedStatement.executeUpdate();
-			
-			if (value == 1) {
-				status = true;
-			} else {
-				status = false;
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			
-			try {
-				connection.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
+		connection = getConnection();
+		preparedStatement = connection.prepareStatement("SELECT NUMBER FROM SHOP");
+		resultSet = preparedStatement.executeQuery();
+		List<String> shopNumbers = new ArrayList<String>();
+		while (resultSet.next()) {
+			shopNumbers.add(resultSet.getString(1));
 		}
-		
-		return status;
+		connection.close();
+		return shopNumbers;
 	}
 }

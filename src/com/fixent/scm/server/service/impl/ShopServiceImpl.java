@@ -1,5 +1,6 @@
 package com.fixent.scm.server.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fixent.scm.server.dao.ShopDAO;
@@ -50,12 +51,21 @@ implements ShopService{
 		return shops;
 	}
 
-	public boolean updateShopNumber(Shop shop) {
+	/**
+	 * 
+	 * @return
+	 */
+	public List<String> getShopNumbers() {
 		
-		ShopDAO dao = new ShopDAO();
-		Boolean status = dao.updateShopNumber(shop);
-		return status;
-		
+		List<String> shopNumbers = new ArrayList<String>();
+		try {
+			
+			ShopDAO dao = new ShopDAO();
+			shopNumbers = dao.getShopNumbers();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return shopNumbers;
 	}
 	
 	

@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fixent.scm.server.model.Address;
 import com.fixent.scm.server.model.Tenant;
+import com.fixent.scm.server.service.impl.ShopServiceImpl;
 
 public class TenantDAO 
 extends BaseDAO {
@@ -37,8 +39,8 @@ extends BaseDAO {
 							+ "STATE, "
 							+ "COUNTRY, "
 							+ "PINCODE, "
-							+ "SHOP_ID) "
-							+ "VALUES (deffault,?,?,?,?,?,?,?,?,?,?);");
+							+ "SHOP_NO) "
+							+ "VALUES (default,?,?,?,?,?,?,?,?,?,?);");
 			preparedStatement.setString(1, tenant.getShopName());
 			preparedStatement.setString(2, tenant.getContactPersonName());
 			preparedStatement.setLong(3, tenant.getMobileNumber());
@@ -46,9 +48,8 @@ extends BaseDAO {
 			preparedStatement.setString(5, tenant.getAddress().getStreet());
 			preparedStatement.setString(6, tenant.getAddress().getCity());
 			preparedStatement.setString(7, tenant.getAddress().getState());
-			preparedStatement.setString(8, tenant.getAddress().getCountry());
-			preparedStatement.setInt(9, tenant.getAddress().getPincode());
-			preparedStatement.setInt(10, tenant.getShop().getId());
+			preparedStatement.setInt(8, tenant.getAddress().getPincode());
+			preparedStatement.setInt(9, tenant.getShop().getNumber());
 				
 			value = preparedStatement.executeUpdate();
 			
@@ -172,8 +173,17 @@ extends BaseDAO {
 				
 				Tenant tenant = new Tenant();
 				tenant.setId(resultSet.getInt(1));
-				tenant.setContactPersonName(resultSet.getString(2));
-				tenant.setMobileNumber(resultSet.getInt(3));
+				tenant.setShopName(resultSet.getString(2));
+				tenant.setContactPersonName(resultSet.getString(3));
+				tenant.setMobileNumber(resultSet.getInt(4));
+				tenant.setLandLineNumber(resultSet.getInt(5));
+				Address address = new Address();
+				address.setStreet(resultSet.getString(6));
+				address.setCity(resultSet.getString(7));
+				address.setState(resultSet.getString(8));
+				address.setPincode(resultSet.getInt(9));
+				ShopServiceImpl shopServiceImpl = new ShopServiceImpl();
+				tenant.setShop(shopServiceImpl.getShop(resultSet.getInt(10)));
 				tenants.add(tenant);
 			}
 		} catch (Exception e) {

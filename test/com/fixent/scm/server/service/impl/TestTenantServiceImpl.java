@@ -1,7 +1,5 @@
 package com.fixent.scm.server.service.impl;
 
-import sun.awt.geom.AreaOp.AddOp;
-
 import com.fixent.scm.server.model.Address;
 import com.fixent.scm.server.model.Shop;
 import com.fixent.scm.server.model.Tenant;
@@ -18,13 +16,11 @@ public class TestTenantServiceImpl {
 		address.setStreet("Ram Nagar");
 		address.setCity("Chennai");
 		address.setState("TamilNadu");
-		address.setCountry("India");
 		address.setPincode(600042);
 		tenant.setAddress(address);
 		
 		Shop shop = new Shop();
-		shop.setId(12);
-		shop.setNumber(67);
+		shop.setNumber(12);
 		tenant.setShop(shop);
 		
 		tenant.setShopName("Vasanthamm Caterinng");
