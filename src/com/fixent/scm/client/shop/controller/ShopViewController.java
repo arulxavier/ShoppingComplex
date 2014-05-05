@@ -41,7 +41,7 @@ public class ShopViewController {
 			super();
 		}
 
-		@Override
+		
 		public void actionPerformed(ActionEvent e) {
 			
 			shop = new Shop();
@@ -73,7 +73,7 @@ public class ShopViewController {
 			super();
 		}
 
-		@Override
+		
 		public void actionPerformed(ActionEvent e) {
 			
 			RightSidePanel rightSidePanel = (RightSidePanel)view.getParent();

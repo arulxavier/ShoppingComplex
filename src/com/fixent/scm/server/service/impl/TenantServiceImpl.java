@@ -11,7 +11,7 @@ public class TenantServiceImpl
 extends BaseService 
 implements TenantService {
 
-	@Override
+	
 	public Boolean createTenant(Tenant tenant) {
 		
 		TenantDAO dao = new TenantDAO();
@@ -19,28 +19,28 @@ implements TenantService {
 		return  status;
 	}
 
-	@Override
+	
 	public Boolean modifyTenant(Tenant tenant) {
 		
 		TenantDAO dao = new TenantDAO();
 		return dao.modifyShop(tenant);
 	}
 
-	@Override
+	
 	public Boolean deleteTenant(Tenant tenant) {
 		
 		TenantDAO dao = new TenantDAO();
 		return dao.deleteShop(tenant);
 	}
 
-	@Override
+	
 	public Tenant getTenant(Long tenantId) {
 		
 		TenantDAO dao = new TenantDAO();
 		return dao.getTenant(tenantId);
 	}
 
-	@Override
+	
 	public List<Tenant> getTenants() {
 		
 		TenantDAO dao = new TenantDAO();

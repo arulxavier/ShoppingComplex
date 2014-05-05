@@ -41,7 +41,7 @@ public class LoginController {
 	class LoginAction
 	implements ActionListener {
 
-		@Override
+		
 		public void actionPerformed(ActionEvent event) {
 			
 			User user = new User();

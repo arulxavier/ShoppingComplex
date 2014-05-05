@@ -48,7 +48,7 @@ public class TenantListController {
 			super();
 		}
 
-		@Override
+		
 		public void actionPerformed(ActionEvent e) {
 			/*
 			 * RightSidePanel rightSidePanel = (RightSidePanel)
@@ -67,7 +67,7 @@ public class TenantListController {
 			super();
 		}
 
-		@Override
+		
 		public void actionPerformed(ActionEvent e) {
 
 			RightSidePanel rightSidePanel = (RightSidePanel) view.getParent();
@@ -86,7 +86,7 @@ public class TenantListController {
 			super();
 		}
 
-		@Override
+		
 		public void actionPerformed(ActionEvent e) {
 
 			/*
@@ -105,7 +105,7 @@ public class TenantListController {
 			super();
 		}
 
-		@Override
+		
 		public void actionPerformed(ActionEvent e) {
 
 			/*

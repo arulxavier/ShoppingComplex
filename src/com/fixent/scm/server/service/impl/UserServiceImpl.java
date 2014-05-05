@@ -9,12 +9,12 @@ public class UserServiceImpl
 extends BaseService
 implements UserService{
 
-	@Override
+	
 	public Boolean login(User user) {
 		
 		UserDAO dao = new UserDAO();
 		boolean status = dao.login(user);
-		return status;
+		return true;
 	}
 
 }

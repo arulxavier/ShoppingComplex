@@ -12,7 +12,7 @@ extends BaseService
 implements ShopGroupService 
 {
 
-	@Override
+	
 	public boolean createShopGroup(ShopGroup shopGroup) {
 
 		ShopGroupDAO dao = new ShopGroupDAO();
@@ -20,7 +20,7 @@ implements ShopGroupService
 		return status;
 	}
 
-	@Override
+	
 	public boolean modifyShopGroup(ShopGroup shopGroup) {
 		
 		ShopGroupDAO dao = new ShopGroupDAO();
@@ -28,13 +28,13 @@ implements ShopGroupService
 		return status;
 	}
 
-	@Override
+	
 	public boolean deleteShopGroup(ShopGroup shopGroup) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	
 	public List<ShopGroup> getShopGroups() {
 		// TODO Auto-generated method stub
 		return null;

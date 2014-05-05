@@ -47,7 +47,7 @@ public class ShopListController {
 			super();
 		}
 
-		@Override
+		
 		public void actionPerformed(ActionEvent e) {
 /*
 			RightSidePanel rightSidePanel = (RightSidePanel) view.getParent();
@@ -68,7 +68,7 @@ public class ShopListController {
 			super();
 		}
 
-		@Override
+		
 		public void actionPerformed(ActionEvent e) {
 
 			RightSidePanel rightSidePanel = (RightSidePanel) view.getParent();
@@ -87,7 +87,7 @@ public class ShopListController {
 			super();
 		}
 
-		@Override
+		
 		public void actionPerformed(ActionEvent e) {
 
 		/*	RightSidePanel rightSidePanel = (RightSidePanel) view.getParent();
@@ -107,7 +107,7 @@ public class ShopListController {
 			super();
 		}
 
-		@Override
+		
 		public void actionPerformed(ActionEvent e) {
 
 		/*	RightSidePanel rightSidePanel = (RightSidePanel) view.getParent();

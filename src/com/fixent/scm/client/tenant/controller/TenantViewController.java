@@ -53,7 +53,7 @@ public class TenantViewController {
 			super();
 		}
 
-		@Override
+		
 		public void actionPerformed(ActionEvent e) {
 
 			tenant = new Tenant();
@@ -106,7 +106,7 @@ public class TenantViewController {
 			super();
 		}
 
-		@Override
+		
 		public void actionPerformed(ActionEvent e) {
 
 			RightSidePanel rightSidePanel = (RightSidePanel) view.getParent();

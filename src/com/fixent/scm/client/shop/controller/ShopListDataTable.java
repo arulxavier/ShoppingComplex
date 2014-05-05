@@ -18,17 +18,17 @@ public class ShopListDataTable extends AbstractTableModel {
 	List<Shop> shopList;
 	String columnList[] = new String[] { "Shop No", "Group Name" };
 
-	@Override
+	
 	public int getColumnCount() {
 		return columnList.length;
 	}
 
-	@Override
+	
 	public int getRowCount() {
 		return shopList.size();
 	}
 
-	@Override
+	
 	public Object getValueAt(int rowIndex, int columnIndex) {
 
 		Shop entity = shopList.get(rowIndex);
@@ -42,7 +42,7 @@ public class ShopListDataTable extends AbstractTableModel {
 		}
 	}
 
-	@Override
+	
 	public String getColumnName(int col) {
 		return columnList[col];
 	}

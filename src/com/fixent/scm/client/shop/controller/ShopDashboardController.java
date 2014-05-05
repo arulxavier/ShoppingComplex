@@ -30,7 +30,7 @@ public class ShopDashboardController {
 			super();
 		}
 
-		@Override
+		
 		public void actionPerformed(ActionEvent e) {
 
 			RightSidePanel rightSidePanel = (RightSidePanel) view.getParent();
@@ -51,7 +51,7 @@ public class ShopDashboardController {
 			super();
 		}
 
-		@Override
+		
 		public void actionPerformed(ActionEvent e) {
 
 			RightSidePanel rightSidePanel = (RightSidePanel) view.getParent();

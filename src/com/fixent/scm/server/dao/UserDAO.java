@@ -20,7 +20,7 @@ extends BaseDAO {
 		boolean status = false;
 		try {
 
-			connection = getConnection();
+			/*connection = getConnection();
 
 //			statement = connect.createStatement();
 //			resultSet = statement.executeQuery("select * from user");
@@ -28,13 +28,13 @@ extends BaseDAO {
 					.prepareStatement("select * from user where user_name = ? and password = ?;");
 			preparedStatement.setString(1, user.getUserName());
 			preparedStatement.setString(2, user.getPassword());
-			status = preparedStatement.execute();
+			status = preparedStatement.execute();*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			
 			try {
-				connection.close();
+//				connection.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
